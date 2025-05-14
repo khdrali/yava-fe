@@ -2,11 +2,7 @@
 
 import { useState } from "react";
 import Image from "next/image";
-<<<<<<< HEAD
 import { useRouter } from "next/navigation";
-=======
-import Link from "next/link";
->>>>>>> e3d6ab4000a72eabe4add9061b9a6c91f5ee174a
 
 const articles = [
   {
@@ -52,11 +48,8 @@ export default function ArticleGallery() {
   const regularArticles = articles.filter(article => !article.isFeatured);
   const [currentSlide, setCurrentSlide] = useState(0);
 
-<<<<<<< HEAD
   const router=useRouter();
 
-=======
->>>>>>> e3d6ab4000a72eabe4add9061b9a6c91f5ee174a
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev === featuredArticles.length - 1 ? 0 : prev + 1));
   };
