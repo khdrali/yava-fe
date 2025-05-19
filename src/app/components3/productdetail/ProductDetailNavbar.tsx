@@ -1,4 +1,5 @@
-// ProductDetailNavbar.tsx
+// components3/productdetail/ProductDetailNavbar.tsx
+"use client"; 
 
 import React, { useState } from "react";
 import Link from "next/link";
@@ -66,7 +67,7 @@ const ProductDetailNavbar = () => {
                       All Foods
                     </button>
                   </li>
-                  {/* Tombol Back - Granola */}
+                  {/* Granola */}
                   <li>
                     <button
                       onClick={() => {
@@ -78,7 +79,7 @@ const ProductDetailNavbar = () => {
                       Granola
                     </button>
                   </li>
-                  {/* Tombol Back - Biscuits */}
+                  {/* Biscuits */}
                   <li>
                     <button
                       onClick={() => {
@@ -90,7 +91,7 @@ const ProductDetailNavbar = () => {
                       Biscuits
                     </button>
                   </li>
-                  {/* Tombol Back - Bar */}
+                  {/* Bar */}
                   <li>
                     <button
                       onClick={() => {
@@ -102,7 +103,7 @@ const ProductDetailNavbar = () => {
                       Bar
                     </button>
                   </li>
-                  {/* Tombol Back - Popcorn */}
+                  {/* Popcorn */}
                   <li>
                     <button
                       onClick={() => {
@@ -114,7 +115,7 @@ const ProductDetailNavbar = () => {
                       Popcorn
                     </button>
                   </li>
-                  {/* Tombol Back - Puffs */}
+                  {/* Puffs */}
                   <li>
                     <button
                       onClick={() => {
@@ -126,7 +127,7 @@ const ProductDetailNavbar = () => {
                       Puffs
                     </button>
                   </li>
-                  {/* Tombol Back - Cashews */}
+                  {/* Cashews */}
                   <li>
                     <button
                       onClick={() => {
@@ -196,6 +197,7 @@ const ProductDetailNavbar = () => {
                 <li>
                   <Link
                     href="/lontar-sugar"
+                    onClick={() => setIsMenuOpen(false)}
                     className="block px-4 py-2 hover:bg-[#FEB519] transition-colors"
                   >
                     Lontar Sugar
@@ -223,7 +225,7 @@ const ProductDetailNavbar = () => {
                           All Foods
                         </button>
                       </li>
-                      {/* Tombol Back - Granola (Mobile) */}
+                      {/* Granola */}
                       <li>
                         <button
                           onClick={() => {
@@ -236,7 +238,7 @@ const ProductDetailNavbar = () => {
                           Granola
                         </button>
                       </li>
-                      {/* Tombol Back - Biscuits (Mobile) */}
+                      {/* Biscuits */}
                       <li>
                         <button
                           onClick={() => {
@@ -249,7 +251,7 @@ const ProductDetailNavbar = () => {
                           Biscuits
                         </button>
                       </li>
-                      {/* Tambahan tombol back untuk lainnya */}
+                      {/* Bar */}
                       <li>
                         <button
                           onClick={() => {
@@ -262,6 +264,7 @@ const ProductDetailNavbar = () => {
                           Bar
                         </button>
                       </li>
+                      {/* Popcorn */}
                       <li>
                         <button
                           onClick={() => {
@@ -274,6 +277,7 @@ const ProductDetailNavbar = () => {
                           Popcorn
                         </button>
                       </li>
+                      {/* Puffs */}
                       <li>
                         <button
                           onClick={() => {
@@ -286,6 +290,7 @@ const ProductDetailNavbar = () => {
                           Puffs
                         </button>
                       </li>
+                      {/* Cashews */}
                       <li>
                         <button
                           onClick={() => {

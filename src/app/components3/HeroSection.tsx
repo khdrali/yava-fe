@@ -1,17 +1,13 @@
+// src/app/components3/HeroSection.tsx
 "use client";
 
 import React from "react";
 import Image from "next/image";
+import { useCategory } from "../context/CategoryContext"; 
 
-interface HeroSectionProps {
-  activeCategory: string;
-  setActiveCategory: (category: string) => void;
-}
+const HeroSection = () => {
+  const { activeCategory, setActiveCategory } = useCategory();
 
-const HeroSection: React.FC<HeroSectionProps> = ({
-  activeCategory,
-  setActiveCategory,
-}) => {
   const categories = [
     { name: "All Products", image: "/icons/all-products.png" },
     { name: "Granola", image: "/icons/granola.png" },
@@ -23,82 +19,67 @@ const HeroSection: React.FC<HeroSectionProps> = ({
   ];
 
   return (
-    <section
-      style={{
-        backgroundColor: "#FFFFFF",
-        padding: "5rem 0 3rem",
-        fontFamily: `'Poppins', sans-serif`,
-        position: "relative",
-        zIndex: 1,
-      }}
-    >
-      <div
-        style={{
-          maxWidth: "1200px",
-          margin: "0 auto",
-          textAlign: "center",
-          padding: "0 1rem",
-        }}
-      >
+    <section style={{
+      backgroundColor: "#FFFFFF",
+      padding: "5rem 0 3rem",
+      fontFamily: `'Poppins', sans-serif`,
+      position: "relative",
+      zIndex: 1,
+    }}>
+      <div style={{
+        maxWidth: "1200px",
+        margin: "0 auto",
+        textAlign: "center",
+        padding: "0 1rem",
+      }}>
         {/* Breadcrumbs */}
-        <div
-          style={{
-            fontSize: "0.875rem",
-            fontWeight: 600,
-            color: "#999",
-            marginBottom: "1rem",
-            fontFamily: `'WildWords', cursive`,
-          }}
-        >
+        <div style={{
+          fontSize: "0.875rem",
+          fontWeight: 600,
+          color: "#999",
+          marginBottom: "1rem",
+          fontFamily: `'WildWords', cursive`,
+        }}>
           <span>Home</span> / <span>Our Foods</span>
         </div>
 
-        {/* Title */}
-        {activeCategory !== "All Products" && (
-          <h1
-            style={{
-              fontSize: "2.25rem",
-              lineHeight: "2.5rem",
-              marginBottom: "2rem",
-              fontWeight: "bold",
-              fontFamily: `'WildWords', cursive`,
-            }}
-          >
-            <span style={{ color: "#4B1A1B" }}>DISCOVER</span>
-            <br />
-            <span style={{ color: "#F31212" }}>YOUR PERFECT CRUNCH</span>
-          </h1>
-        )}
+        <h1 style={{
+          fontSize: "2.25rem",
+          lineHeight: "2.5rem",
+          marginBottom: "2rem",
+          fontWeight: "bold",
+          fontFamily: `'WildWords', cursive`,
+        }}>
+          <span style={{ color: "#4B1A1B" }}>DISCOVER</span>
+          <br />
+          <span style={{ color: "#F31212" }}>YOUR PERFECT CRUNCH</span>
+        </h1>
 
         {/* Search Bar */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            marginBottom: "2rem",
-          }}
-        >
-          <div
-            style={{
-              position: "relative",
-              width: "80%",
-              maxWidth: "600px",
-            }}
-          >
+        <div style={{
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center",
+          marginBottom: "2rem",
+        }}>
+          <div style={{
+            position: "relative",
+            width: "80%",
+            maxWidth: "600px",
+          }}>
             <input
               type="text"
               placeholder="Find your perfect crunch..."
               style={{
                 width: "100%",
                 height: "40px",
-                padding: "0 40px 0 10px", // Add padding for the search icon
-                border: "1px solid #000", // Border hitam
+                padding: "0 40px 0 10px",
+                border: "1px solid #000",
                 borderRadius: "20px",
                 outline: "none",
                 fontSize: "1rem",
                 fontFamily: `'Poppins', sans-serif`,
-                color: "#000", // Teks hitam
+                color: "#000",
               }}
             />
             <button
@@ -114,13 +95,11 @@ const HeroSection: React.FC<HeroSectionProps> = ({
               }}
             >
               <Image
-                src="/icons/src.png" // Replace with your search icon path
+                src="/icons/src.png"
                 alt="Search"
                 width={35}
                 height={35}
-                style={{
-                  objectFit: "contain",
-                }}
+                style={{ objectFit: "contain" }}
               />
             </button>
           </div>
@@ -128,19 +107,16 @@ const HeroSection: React.FC<HeroSectionProps> = ({
 
         {/* Category Icons */}
         <div style={{ marginTop: "2rem" }}>
-          <div
-            style={{
-              display: "flex",
-              gap: "1.5rem",
-              overflowX: "auto",
-              scrollbarWidth: "none", // Firefox
-              msOverflowStyle: "none", // IE 11
-              WebkitOverflowScrolling: "touch",
-              paddingBottom: "0.5rem",
-              justifyContent: "center",
-            }}
-            className="hide-scrollbar"
-          >
+          <div style={{
+            display: "flex",
+            gap: "1.5rem",
+            overflowX: "auto",
+            scrollbarWidth: "none",
+            msOverflowStyle: "none",
+            WebkitOverflowScrolling: "touch",
+            paddingBottom: "0.5rem",
+            justifyContent: "center",
+          }}>
             {categories.map((categoryObj) => (
               <div
                 key={categoryObj.name}
@@ -156,30 +132,28 @@ const HeroSection: React.FC<HeroSectionProps> = ({
                 }}
               >
                 {/* Transparent Card with Icon */}
-                <div
-                  style={{
-                    width: "70px",
-                    height: "70px",
-                    borderRadius: "50%",
-                    boxShadow: activeCategory === categoryObj.name
+                <div style={{
+                  width: "70px",
+                  height: "70px",
+                  borderRadius: "50%",
+                  boxShadow:
+                    activeCategory === categoryObj.name
                       ? "0 4px 12px rgba(0,0,0,0.3)"
                       : "0 2px 5px rgba(0,0,0,0.1)",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    marginBottom: "0.75rem",
-                    transition: "transform 0.3s ease",
-                  }}
-                >
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  marginBottom: "0.75rem",
+                  transition: "transform 0.3s ease",
+                  transform:
+                    activeCategory === categoryObj.name ? "scale(1.1)" : "scale(1)",
+                }}>
                   <Image
                     src={categoryObj.image}
                     alt={categoryObj.name}
                     width={45}
                     height={45}
-                    style={{
-                      objectFit: "contain",
-                      transition: "transform 0.3s ease",
-                    }}
+                    style={{ objectFit: "contain", transition: "transform 0.3s ease" }}
                     onError={(error) =>
                       console.error("Error loading icon:", error)
                     }

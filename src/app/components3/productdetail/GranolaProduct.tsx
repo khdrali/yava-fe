@@ -1,18 +1,21 @@
+// components3/productdetail/GranolaProduct.tsx
 "use client";
 
 import React, { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
+type SizeType = "400g" | "200g" | "90g";
+
 const GranolaProduct = ({ productId }: { productId: string }) => {
-  const [selectedSize, setSelectedSize] = useState("400g");
+  const [selectedSize, setSelectedSize] = useState<SizeType>("400g");
   const [isFlipped, setIsFlipped] = useState(false);
 
   const productData = {
     name: "CHOCOLATE VANILLA",
     description:
       "When you start your day with chocolate from Sulawesi, vanilla, creamy cashew nuts and crunchy granola clusters only from YAVA – you won’t be able to resist SmileAllDay!",
-    sizes: ["400g", "200g", "90g"],
+    sizes: ["400g", "200g", "90g"] as const,
     sizeIcons: {
       "400g": "/icons/400g.png",
       "200g": "/icons/200g.png",
@@ -80,7 +83,6 @@ const GranolaProduct = ({ productId }: { productId: string }) => {
             </h2>
           </div>
 
-          {/* Size Icon Buttons */}
           <div className="flex gap-3 mt-6">
             {productData.sizes.map((size) => (
               <button
@@ -90,10 +92,8 @@ const GranolaProduct = ({ productId }: { productId: string }) => {
                   setIsFlipped(false);
                 }}
                 className={`p-1 rounded-full border-2 transition-all duration-300 ${
-                  selectedSize === size
-                    ? "border-orange-500"
-                    : "border-gray-300"
-                } hover:border-orange-500 hover:shadow-md`}
+                  selectedSize === size ? "border-orange-500" : "border-gray-300"
+                }`}
               >
                 <Image
                   src={productData.sizeIcons[size]}

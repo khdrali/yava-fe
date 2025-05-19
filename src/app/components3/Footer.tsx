@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
 import Head from "next/head";
@@ -8,13 +10,11 @@ const Footer = () => {
   return (
     <>
       <Head>
-        {/* Load Poppins font with weights 400, 500, 600, 700 */}
         <link
           href="https://fonts.googleapis.com/css2?family=Poppins :wght@400;500;600;700&display=swap"
           rel="stylesheet"
         />
 
-        {/* Define custom font WildWords */}
         <style jsx>{`
           @font-face {
             font-family: 'WildWords';
@@ -44,9 +44,7 @@ const Footer = () => {
       </Head>
 
       <footer className="bg-[#FFF6EF] text-black pt-12">
-        {/* Informasi & Navigasi */}
         <div className="container mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 px-6 py-12">
-          {/* Info Perusahaan */}
           <div>
             <img src="/images/logo-yava.png" alt="YAVA" className="w-40 mb-4" />
             <p className="font-semibold text-lg">PT EAST INDO FAIR TRADING</p>
@@ -116,7 +114,7 @@ const Footer = () => {
           </div>
         </div>
 
-        {/* Footer Bawah */}
+        {/* Footer */}
         <div
           className="bg-orange-500 text-white text-center py-3 text-sm"
           style={{ fontFamily: "'Poppins', sans-serif" }}

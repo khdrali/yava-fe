@@ -1,4 +1,6 @@
 // src/app/components/RecommendationSection.tsx
+"use client";
+
 import React, { useState, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,11 +13,10 @@ interface Product {
 }
 
 interface RecommendationSectionProps {
-  currentProductId?: string; // ID produk saat ini (string), opsional
+  currentProductId?: string; 
 }
 
 const RecommendationSection: React.FC<RecommendationSectionProps> = ({ currentProductId }) => {
-  // Daftar produk statis, atau ambil dari API sesuai kebutuhan
   const allProducts: Product[] = [
     { id: 1, name: 'GO`NOLA Chocolate Vanilla', category: 'Granola', image: '/product/GranolaVanilla.png' },
     { id: 2, name: 'Granola Puffs Chocolate Vanila', category: 'Granola', image: '/product/GranolaPuffts.png' },
@@ -24,10 +25,8 @@ const RecommendationSection: React.FC<RecommendationSectionProps> = ({ currentPr
     { id: 5, name: 'Granola Coconut Banana', category: 'Granola', image: '/product/GranolaCoconutBanana.png' },
   ];
 
-  // Filter produk: jangan tampilkan produk yang sedang dibuka
   const filteredProducts = allProducts.filter(product => String(product.id) !== currentProductId);
 
-  // Ref dan state untuk scroll
   const containerRef = useRef<HTMLDivElement>(null);
   const [scrollPosition, setScrollPosition] = useState(0);
 
@@ -68,7 +67,7 @@ const RecommendationSection: React.FC<RecommendationSectionProps> = ({ currentPr
               className="bg-white p-2 rounded-full shadow-md"
             >
               <Image
-                src="/icons/kiri.png" // Replace with your left arrow PNG icon
+                src="/icons/kiri.png" 
                 alt="Previous"
                 width={20}
                 height={20}
@@ -80,7 +79,7 @@ const RecommendationSection: React.FC<RecommendationSectionProps> = ({ currentPr
               className="bg-white p-2 rounded-full shadow-md"
             >
               <Image
-                src="/icons/kanan.png" // Replace with your right arrow PNG icon
+                src="/icons/kanan.png" 
                 alt="Next"
                 width={20}
                 height={20}
@@ -90,7 +89,6 @@ const RecommendationSection: React.FC<RecommendationSectionProps> = ({ currentPr
           </div>
         </div>
 
-        {/* Recommendation Container */}
         <div
           ref={containerRef}
           className="flex overflow-x-scroll scrollbar-hide whitespace-nowrap transition-transform duration-300"
@@ -118,12 +116,11 @@ const RecommendationSection: React.FC<RecommendationSectionProps> = ({ currentPr
                 </div>
                 {/* Nama produk */}
                 <div className="relative z-20 p-4 text-center">
-                  {/* Split product name into two lines */}
                   <p className="text-black font-medium text-sm md:text-base mb-1 transition-colors duration-300 group-hover:text-white">
-                    {product.name.split(' ')[0]} {/* Display the first part of the name */}
+                    {product.name.split(' ')[0]} 
                   </p>
                   <p className="text-black font-medium text-sm md:text-base transition-colors duration-300 group-hover:text-white">
-                    {product.name.split(' ').slice(1).join(' ')} {/* Display the rest of the name */}
+                    {product.name.split(' ').slice(1).join(' ')} 
                   </p>
                 </div>
               </div>

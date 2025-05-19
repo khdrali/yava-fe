@@ -1,13 +1,11 @@
+// src/app/components3/ProductCategories.tsx
 import React from "react";
+import { useCategory } from "../context/CategoryContext";
 
-interface ProductCategoryProps {
-  activeCategory: string;
-  setActiveCategory: React.Dispatch<React.SetStateAction<string>>;
-}
+const ProductCategories = () => {
+  const { activeCategory, setActiveCategory } = useCategory();
 
-const ProductCategories: React.FC<ProductCategoryProps> = ({ activeCategory, setActiveCategory }) => {
-  
-  const categories = ['Granola', 'Biscuits', 'Bar', 'Popcorn', 'Puffs', 'Cashews'];
+  const categories = ['All Products', 'Granola', 'Biscuits', 'Bar', 'Popcorn', 'Puffs', 'Cashews'];
 
   return (
     <section className="bg-white py-4">

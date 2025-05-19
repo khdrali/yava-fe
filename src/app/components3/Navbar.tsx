@@ -3,13 +3,10 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useCategory } from "../context/CategoryContext"; 
 
-type NavbarProps = {
-  activeCategory?: string;
-  setActiveCategory?: (category: string) => void;
-};
-
-const Navbar = ({ activeCategory = "All Products", setActiveCategory = () => {} }: NavbarProps) => {
+const Navbar = () => {
+  const { activeCategory, setActiveCategory } = useCategory(); 
   const categories = ["All Products", "Granola", "Biscuits", "Bar", "Popcorn", "Puffs", "Cashews"];
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -52,18 +49,33 @@ const Navbar = ({ activeCategory = "All Products", setActiveCategory = () => {} 
           </div>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-4 sm:space-x-6 md:space-x-8 text-xs sm:text-sm text-black">
-            <a href="#" className="hover:text-red-500 font-normal">Lontar Sugar</a>
+          <div className="hidden md:flex items-center space-x-4 sm:space-x-6 md:space-x-8 text-xs sm:text-sm font-semibold text-black">
+            <a href="#" className="hover:text-red-500">Lontar Sugar</a>
 
+            {/* Our Foods Dropdown */}
             <div className="relative">
               <button
                 onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                className="hover:text-red-500 focus:outline-none font-normal"
+                className="hover:text-red-500 focus:outline-none font-semibold"
               >
                 Our Foods ▾
               </button>
               {isDropdownOpen && (
-                <div className="absolute left-0 mt-2 bg-white border rounded shadow-md min-w-[120px] text-xs z-10">
+                <div
+                  style={{
+                    position: 'absolute',
+                    top: '100%', 
+                    left: '0', 
+                    background: 'white',
+                    border: 'none',
+                    boxShadow: '0 4px 6px rgba(0, 0, 0, 0.1)',
+                    borderRadius: '4px',
+                    zIndex: '1000',
+                    minWidth: '150px',
+                    display: 'flex',
+                    flexDirection: 'column', 
+                  }}
+                >
                   {categories.map((cat) => (
                     <button
                       key={cat}
@@ -71,9 +83,18 @@ const Navbar = ({ activeCategory = "All Products", setActiveCategory = () => {} 
                         setActiveCategory(cat);
                         setIsDropdownOpen(false);
                       }}
-                      className={`block w-full text-left px-3 py-1 hover:bg-gray-100 ${
-                        activeCategory === cat ? 'text-red-500' : ''
-                      }`}
+                      style={{
+                        padding: '8px 12px',
+                        cursor: 'pointer',
+                        transition: 'background-color 0.3s ease',
+                        fontFamily: 'Poppins, sans-serif',
+                        fontSize: '14px',
+                        color: activeCategory === cat ? 'red' : '#333',
+                        backgroundColor: 'transparent',
+                        border: 'none',
+                        outline: 'none', 
+                        whiteSpace: 'nowrap', 
+                      }}
                     >
                       {cat}
                     </button>
@@ -82,13 +103,14 @@ const Navbar = ({ activeCategory = "All Products", setActiveCategory = () => {} 
               )}
             </div>
 
-            <a href="#" className="hover:text-red-500 font-normal">Ingredients</a>
-            <a href="#" className="hover:text-red-500 font-normal">Company</a>
-            <a href="#" className="hover:text-red-500 font-normal">YAVAKataMereka</a>
-            <Link href="/news-event" className="hover:text-red-500 font-normal">
+            {/* Static Links */}
+            <a href="#" className="hover:text-red-500">Ingredients</a>
+            <a href="#" className="hover:text-red-500">Company</a>
+            <a href="#" className="hover:text-red-500">YAVAKataMereka</a>
+            <Link href="/news-event" className="hover:text-red-500">
               News & Event
             </Link>
-            <div className="space-x-1 font-normal">
+            <div className="space-x-1 font-semibold">
               <span>ID</span>
               <span className="text-red-500">EN</span>
             </div>
@@ -97,14 +119,14 @@ const Navbar = ({ activeCategory = "All Products", setActiveCategory = () => {} 
 
         {/* Mobile Menu */}
         {isMenuOpen && (
-          <div className="md:hidden max-h-[80vh] overflow-y-auto pb-2 pt-1 bg-white border-t text-xs sm:text-sm font-normal">
+          <div className="md:hidden max-h-[80vh] overflow-y-auto pb-2 pt-1 bg-white border-t text-xs sm:text-sm font-semibold">
             <ul className="space-y-2 text-black">
-              <li><a href="#" className="block py-1.5 hover:text-red-500 font-normal">Lontar Sugar</a></li>
+              <li><a href="#" className="block py-1.5 hover:text-red-500">Lontar Sugar</a></li>
 
               <li>
                 <button
                   onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-                  className="w-full text-left font-normal flex justify-between items-center"
+                  className="w-full text-left font-semibold flex justify-between items-center"
                 >
                   <span>Our Foods</span>
                   <span>{isDropdownOpen ? "▼" : "▶"}</span>
@@ -131,11 +153,11 @@ const Navbar = ({ activeCategory = "All Products", setActiveCategory = () => {} 
                 )}
               </li>
 
-              <li><a href="#" className="block py-1.5 hover:text-red-500 font-normal">Ingredients</a></li>
-              <li><a href="#" className="block py-1.5 hover:text-red-500 font-normal">Company</a></li>
-              <li><a href="#" className="block py-1.5 hover:text-red-500 font-normal">YAVAKataMereka</a></li>
+              <li><a href="#" className="block py-1.5 hover:text-red-500">Ingredients</a></li>
+              <li><a href="#" className="block py-1.5 hover:text-red-500">Company</a></li>
+              <li><a href="#" className="block py-1.5 hover:text-red-500">YAVAKataMereka</a></li>
               <li>
-                <Link href="/news-event" className="block py-1.5 hover:text-red-500 font-normal">
+                <Link href="/news-event" className="block py-1.5 hover:text-red-500">
                   News & Event
                 </Link>
               </li>
