@@ -2,7 +2,7 @@
 
 import React from "react";
 import Image from "next/image";
-import Link from "next/link";
+import Link from "next/link"; 
 import useGlobalCategory from "../../../lib/globalState";
 
 interface Product {
@@ -41,71 +41,94 @@ const ProductList = () => {
   const [activeCategory] = useGlobalCategory();
 
   const renderProductCard = (product: Product) => {
-    const isClickable = product.id === 3; 
-    const card = (
-      <div
-        key={product.id}
-        className="group relative bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg flex flex-col"
-        style={{ width: "100%", maxWidth: "200px", minHeight: "300px" }}
-      >
-        {/* Gambar Produk */}
-        <div className="relative w-full h-48 sm:h-56 overflow-hidden rounded-t-lg z-10">
-          <Image
-            src={product.image}
-            alt={product.name}
-            fill
-            sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-          />
-        </div>
-
-        {/* Gradient Overlay */}
-        <div className="absolute inset-0 z-0 overflow-hidden">
-          <div className="absolute bottom-0 w-full h-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out" />
-        </div>
-
-        {/* Teks Nama Produk */}
-        <div className="relative z-20 p-3 text-center flex-grow flex items-center justify-center">
-          <p
-            className="text-[#333333] group-hover:text-white transition-colors duration-300 font-medium text-sm sm:text-base text-center"
-            style={{
-              fontFamily: "'Poppins', sans-serif",
-              fontWeight: 500,
-              fontSize: "14px",
-              lineHeight: "1.4",
-            }}
-          >
-            {product.name}
-          </p>
-        </div>
-      </div>
-    );
-
-    return isClickable ? (
+    return (
       <Link href={`/our-foods/product-detail/${product.id}`} key={product.id}>
-        {card}
+        <div className="group relative bg-white rounded-lg overflow-hidden shadow-md transition-all duration-300 transform hover:-translate-y-1 hover:shadow-lg flex flex-col cursor-pointer" style={{ width: "100%", maxWidth: "200px", minHeight: "280px" }}>
+          {/* Gambar Produk - Tinggi disesuaikan untuk mobile */}
+          <div className="relative w-full h-32 sm:h-40 md:h-44 lg:h-56 overflow-hidden rounded-t-lg z-10">
+            <Image
+              src={product.image}
+              alt={product.name}
+              fill
+              sizes="(max-width: 640px) 100vw, (max-width: 768px) 50vw, 33vw"
+              className="object-cover transition-transform duration-500 group-hover:scale-105"
+            />
+          </div>
+
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 z-0 overflow-hidden">
+            <div className="absolute bottom-0 w-full h-full bg-gradient-to-r from-yellow-400 via-orange-500 to-red-500 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-in-out" />
+          </div>
+
+          {/* Nama Produk */}
+          <div className="relative z-20 p-3 text-center flex-grow flex items-center justify-center">
+            <p
+              className="text-[#333333] group-hover:text-white transition-colors duration-300 font-medium text-base text-center"
+              style={{
+                fontFamily: "'Poppins', sans-serif",
+                fontWeight: 500,
+                fontSize: "14px",
+                lineHeight: "1.4",
+              }}
+            >
+              {product.name}
+            </p>
+          </div>
+        </div>
       </Link>
-    ) : (
-      card
     );
   };
 
+  const groupedProducts = () => {
+    const groups: Record<string, Product[]> = {};
+    products.forEach((product) => {
+      if (!groups[product.category]) groups[product.category] = [];
+      groups[product.category].push(product);
+    });
+    return groups;
+  };
+
+  const renderAllProductsByCategory = () => {
+    const groups = groupedProducts();
+    return Object.entries(groups).map(([category, productList]) => (
+      <React.Fragment key={category}>
+        <h2 className="text-xl md:text-2xl font-bold mt-8 mb-4 text-[#333333] capitalize">
+          {category}
+        </h2>
+        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
+          {productList.map(renderProductCard)}
+        </div>
+      </React.Fragment>
+    ));
+  };
+
   const filteredProducts = activeCategory === "All Products"
-    ? products
-    : products.filter((product) => product.category === activeCategory);
+    ? renderAllProductsByCategory()
+    : products
+        .filter((product) => product.category === activeCategory)
+        .map(renderProductCard);
 
   return (
     <section className="bg-white min-h-screen flex flex-col justify-between">
       <div className="container mx-auto px-4 py-8">
         {/* Judul Kategori */}
-        <h2 className="text-xl md:text-2xl font-bold mb-6 text-gray-900 capitalize">
-          {activeCategory}
-        </h2>
-
-        {/* Grid Produk Responsif */}
-        <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 sm:gap-6">
-          {filteredProducts.map(renderProductCard)}
-        </div>
+        {activeCategory === "All Products" ? (
+          <>
+            <h2 className="text-xl md:text-2xl font-bold mb-6 text-[#333333] capitalize">
+              All Products
+            </h2>
+            {filteredProducts}
+          </>
+        ) : (
+          <>
+            <h2 className="text-xl md:text-2xl font-bold mb-6 text-[#333333] capitalize">
+              {activeCategory}
+            </h2>
+            <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 sm:gap-6">
+              {filteredProducts}
+            </div>
+          </>
+        )}
       </div>
 
       {/* Footer Toko */}
@@ -136,7 +159,7 @@ const ProductList = () => {
           {storeIcons.map((icon) => (
             <a
               key={icon}
-              href={`https://${icon}.com`}    
+              href={`https://${icon}.com`} 
               target="_blank"
               rel="noopener noreferrer"
             >
