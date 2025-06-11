@@ -1,64 +1,75 @@
 'use client';
-import Image from 'next/image';
-import Link from 'next/link';
+import React from 'react';
 import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
-
+import Image from 'next/image';
+import Link from 'next/link';
 export default function CombinedSection() {
   const [openDropdown, setOpenDropdown] = useState(false);
   return (
     <div className="flex flex-col w-full min-h-screen">
-      {/* Wrapper untuk Hero + Footer */}
-      <div className="relative">
-        {/* Hero Section */}
-        <section className="bg-orange-500 text-white px-6 py-12 md:py-0">
-          <div className="container mx-auto">
-            <div className="flex flex-col md:flex-row items-center justify-between h-full">
-              {/* Kolom Kiri: Teks */}
-              <div className="w-full md:w-1/2 text-left mb-8 md:mb-0 md:pr-10">
-                <h1 className="text-4xl sm:text-5xl font-bold leading-none mb-2">WELCOME</h1>
-                <p className="text-4xl sm:text-5xl font-bold leading-none mb-4">TO YAVA</p>
-                <div className="text-base sm:text-lg mb-6 space-y-1 max-w-lg">
-                  <p>Healthy CAN be delicious.</p>
-                  <p>At YAVA, we celebrate food that brings health, joy and freedom.</p>
-                </div>
-                <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full transition duration-300">
-                  Learn More
-                </button>
-              </div>
+{/* Wrapper untuk Hero + Footer */}
+<div className="w-full min-h-[1080px] relative">
 
-              {/* Kolom Kanan: Gambar */}
-              <div className="w-full md:w-1/2 flex justify-center mt-6 md:mt-0">
-                <div className="relative w-full max-w-md md:max-w-none md:w-[1200px] md:h-[1000px] aspect-square md:aspect-auto">
-                  <Image
-                    src="/heroimage/Product-Yava.png"
-                    alt="YAVA Granola Chocolate Vanilla"
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
-                  />
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Store Footer Section */}
-        <section className="bg-[#FDF5E6] text-gray-800 px-6 py-9">
-          <div className="flex flex-col sm:flex-row items-center justify-between gap-4 sm:gap-0">
-            <p className="text-[22px] font-semibold whitespace-nowrap text-center sm:text-left">
-              Available in Your Favorite Stores
-            </p>
-            <div className="flex gap-4 overflow-x-auto no-scrollbar py-2">
-              <Image src="/heroimage/Blibli.png" alt="Blibli" width={89} height={35} />
-              <Image src="/heroimage/Lazada (1).png" alt="Lazada" width={124} height={35} />
-              <Image src="/heroimage/Shopee.png" alt="Shopee" width={120} height={35} />
-              <Image src="/heroimage/Tiktok (1).png" alt="TikTok Shop" width={153} height={35} />
-              <Image src="/heroimage/Tokopedia (1).png" alt="Tokopedia" width={154} height={35} />
-            </div>
-          </div>
-        </section>
+  {/* Hero Section */}
+  <section 
+    className="bg-orange-500 text-white px-[250px] pt-16 pb-0 h-[700px]" 
+    style={{ boxSizing: 'border-box' }}
+  >
+    <div className="flex flex-col md:flex-row items-center justify-between h-full">
+      
+      {/* Kolom Kiri: Teks */}
+      <div className="w-full md:w-1/2 text-left mb-8 md:mb-0">
+        <h1 className="text-4xl sm:text-5xl font-bold leading-none mb-2">WELCOME</h1>
+        <p className="text-4xl sm:text-5xl font-bold leading-none mb-4">TO YAVA</p>
+        <div className="text-base sm:text-lg mb-6 space-y-1 max-w-lg">
+          <p>Healthy CAN be delicious.</p>
+          <p>At YAVA, we celebrate food that brings health, joy and freedom.</p>
+        </div>
+        <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full transition duration-300">
+          Learn More
+        </button>
       </div>
+
+      {/* Kolom Kanan: Gambar */}
+      <div className="w-full md:w-1/2 flex justify-center mt-6 md:mt-0">
+        <div 
+          className="relative w-[980px] h-[858px] aspect-[1027/858] shrink-0"
+        >
+          <Image
+            src="/heroimage/Product-Yava.png"
+            alt="YAVA Granola Chocolate Vanilla"
+            fill
+            className="object-contain"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
+          />
+        </div>
+      </div>
+    </div>
+  </section>
+
+{/* Store Footer Section */}
+<section 
+  className="bg-[#FDF5E6] text-gray-800 px-[200px] h-[125px] flex items-center"
+  style={{ boxSizing: 'border-box' }}
+>
+  <div className="flex flex-row items-center justify-between w-full gap-[90px]">
+    {/* Teks */}
+    <p className="text-[22px] font-semibold whitespace-nowrap flex-shrink-0">
+      Available in Your Favorite Stores
+    </p>
+
+    {/* Logo Store */}
+    <div className="flex gap-[90px] overflow-x-auto no-scrollbar scroll-smooth py-2">
+      <Image src="/heroimage/Blibli.png" alt="Blibli" width={89} height={35} />
+      <Image src="/heroimage/Lazada (1).png" alt="Lazada" width={124} height={35} />
+      <Image src="/heroimage/Shopee.png" alt="Shopee" width={120} height={35} />
+      <Image src="/heroimage/Tiktok (1).png" alt="TikTok Shop" width={153} height={35} />
+      <Image src="/heroimage/Tokopedia (1).png" alt="Tokopedia" width={154} height={35} />
+    </div>
+  </div>
+</section>
+</div>
 
       {/* Lontar Sugar Section */}
       <section className="bg-[#FDF5E6] px-6">
