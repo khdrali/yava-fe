@@ -4,72 +4,62 @@ import { useState } from 'react';
 import { ChevronDown } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
+
 export default function CombinedSection() {
   const [openDropdown, setOpenDropdown] = useState(false);
+
   return (
     <div className="flex flex-col w-full min-h-screen">
-{/* Wrapper untuk Hero + Footer */}
-<div className="w-full min-h-[1080px] relative">
+      {/* Wrapper untuk Hero + Store Footer */}
+      <div className="w-full relative">
+        {/* Hero Section */}
+        <section className="bg-orange-500 text-white px-[250px] pt-16 pb-0 h-[700px] box-border">
+          <div className="flex flex-col md:flex-row items-center justify-between h-full">
+            {/* Kolom Kiri: Teks */}
+            <div className="w-full md:w-1/2 text-left mb-8 md:mb-0">
+              <h1 className="text-4xl sm:text-5xl font-bold leading-none mb-2">WELCOME</h1>
+              <p className="text-4xl sm:text-5xl font-bold leading-none mb-4">TO YAVA</p>
+              <div className="text-base sm:text-lg mb-6 space-y-1 max-w-lg">
+                <p>Healthy CAN be delicious.</p>
+                <p>At YAVA, we celebrate food that brings health, joy and freedom.</p>
+              </div>
+              <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full transition duration-300">
+                Learn More
+              </button>
+            </div>
+            {/* Kolom Kanan: Gambar */}
+            <div className="w-full md:w-1/2 flex justify-center mt-6 md:mt-0">
+              <div className="relative w-full max-w-[980px] h-[858px] aspect-[1027/858] shrink-0">
+                <Image
+                  src="/heroimage/Product-Yava.png"
+                  alt="YAVA Granola Chocolate Vanilla"
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
 
-  {/* Hero Section */}
-  <section 
-    className="bg-orange-500 text-white px-[250px] pt-16 pb-0 h-[700px]" 
-    style={{ boxSizing: 'border-box' }}
-  >
-    <div className="flex flex-col md:flex-row items-center justify-between h-full">
-      
-      {/* Kolom Kiri: Teks */}
-      <div className="w-full md:w-1/2 text-left mb-8 md:mb-0">
-        <h1 className="text-4xl sm:text-5xl font-bold leading-none mb-2">WELCOME</h1>
-        <p className="text-4xl sm:text-5xl font-bold leading-none mb-4">TO YAVA</p>
-        <div className="text-base sm:text-lg mb-6 space-y-1 max-w-lg">
-          <p>Healthy CAN be delicious.</p>
-          <p>At YAVA, we celebrate food that brings health, joy and freedom.</p>
-        </div>
-        <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full transition duration-300">
-          Learn More
-        </button>
+        {/* Store Footer Section */}
+        <section className="bg-[#FDF5E6] text-gray-800 px-[200px] h-[125px] flex items-center box-border">
+          <div className="flex flex-row items-center justify-between w-full gap-[90px]">
+            {/* Teks */}
+            <p className="text-[22px] font-semibold whitespace-nowrap flex-shrink-0">
+              Available in Your Favorite Stores
+            </p>
+            {/* Logo Store */}
+            <div className="flex gap-[90px] overflow-x-auto no-scrollbar scroll-smooth py-2">
+              <Image src="/heroimage/Blibli.png" alt="Blibli" width={89} height={35} />
+              <Image src="/heroimage/Lazada (1).png" alt="Lazada" width={124} height={35} />
+              <Image src="/heroimage/Shopee.png" alt="Shopee" width={120} height={35} />
+              <Image src="/heroimage/Tiktok (1).png" alt="TikTok Shop" width={153} height={35} />
+              <Image src="/heroimage/Tokopedia (1).png" alt="Tokopedia" width={154} height={35} />
+            </div>
+          </div>
+        </section>
       </div>
-
-      {/* Kolom Kanan: Gambar */}
-      <div className="w-full md:w-1/2 flex justify-center mt-6 md:mt-0">
-        <div 
-          className="relative w-[980px] h-[858px] aspect-[1027/858] shrink-0"
-        >
-          <Image
-            src="/heroimage/Product-Yava.png"
-            alt="YAVA Granola Chocolate Vanilla"
-            fill
-            className="object-contain"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 90vw, 80vw"
-          />
-        </div>
-      </div>
-    </div>
-  </section>
-
-{/* Store Footer Section */}
-<section 
-  className="bg-[#FDF5E6] text-gray-800 px-[200px] h-[125px] flex items-center"
-  style={{ boxSizing: 'border-box' }}
->
-  <div className="flex flex-row items-center justify-between w-full gap-[90px]">
-    {/* Teks */}
-    <p className="text-[22px] font-semibold whitespace-nowrap flex-shrink-0">
-      Available in Your Favorite Stores
-    </p>
-
-    {/* Logo Store */}
-    <div className="flex gap-[90px] overflow-x-auto no-scrollbar scroll-smooth py-2">
-      <Image src="/heroimage/Blibli.png" alt="Blibli" width={89} height={35} />
-      <Image src="/heroimage/Lazada (1).png" alt="Lazada" width={124} height={35} />
-      <Image src="/heroimage/Shopee.png" alt="Shopee" width={120} height={35} />
-      <Image src="/heroimage/Tiktok (1).png" alt="TikTok Shop" width={153} height={35} />
-      <Image src="/heroimage/Tokopedia (1).png" alt="Tokopedia" width={154} height={35} />
-    </div>
-  </div>
-</section>
-</div>
 
       {/* Lontar Sugar Section */}
       <section className="bg-[#FDF5E6] px-6">
@@ -80,9 +70,7 @@ export default function CombinedSection() {
               <h2 className="text-4xl font-bold mb-2">
                 <span className="text-black">LONTAR</span> <span className="text-red-600">SUGAR</span>
               </h2>
-              <p className="text-xl font-medium mb-4">
-                Pure • Natural • Sustainable
-              </p>
+              <p className="text-xl font-medium mb-4">Pure • Natural • Sustainable</p>
               <p>Lontar Sugar gives you more steady blood sugar and helps</p>
               <p className="text-base mb-6">keep you more healthy (and taste great!).</p>
               <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full transition duration-300">
@@ -195,10 +183,10 @@ export default function CombinedSection() {
               <h2 className="text-4xl font-bold mb-2">
                 <span className="text-black">WHY</span> <span className="text-red-600">YAVA GRANOLA?</span>
               </h2>
-              <p className="text-xl font-medium mb-4">
-                Delicious • Convenient • Healthy
+              <p className="text-xl font-medium mb-4">Delicious • Convenient • Healthy</p>
+              <p>
+                YAVA granola features the traditional rolled oats, combined with a Bali-centric combination of puffed red rice, cashews and various dried fruits (even chocolate!). Mixed and baked until perfectly crunchy.
               </p>
-              <p>YAVA granola features the traditional rolled oats, combined with a Bali-centric combination of puffed red rice, cashews and various dried fruits (even chocolate!). Mixed and baked until perfectly crunchy.</p>
               <button className="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-full transition duration-300 mt-4">
                 Learn More
               </button>
